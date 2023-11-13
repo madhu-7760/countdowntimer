@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    #timer {
+      font-size: 36px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Countdown Timer</h1>
+  <div id="timer">00:00:00</div>
+
+  <script>
+    function startTimer(durationInSeconds) {
+      let timer = durationInSeconds;
+      const timerElement = document.getElementById('timer');
+
+      const countdownInterval = setInterval(function () {
+        const hours = Math.floor(timer / 3600);
+        const minutes = Math.floor((timer % 3600) / 60);
+        const seconds = timer % 60;
+
+        timerElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+        if (--timer < 0) {
+          clearInterval(countdownInterval);
+          timerElement.textContent = '00:00:00';
+          alert('Countdown timer has ended!');
+        }
+      }, 1000);
+    }
+
+    // Set the countdown duration in seconds
+    const countdownDuration = 300; // Change this to your desired countdown duration
+    startTimer(countdownDuration);
+  </script>
+
+</body>
+</html>

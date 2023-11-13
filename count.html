@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    #timer {
+      font-size: 36px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Countdown to New Year's Eve</h1>
+  <div id="timer"></div>
+
+  <script>
+    function startCountdown(targetDate) {
+      const countdownInterval = setInterval(function () {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+          clearInterval(countdownInterval);
+          document.getElementById('timer').textContent = 'Event has started!';
+        } else {
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          document.getElementById('timer').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+      }, 1000);
+    }
+
+    // Set the target date for the countdown (New Year's Eve)
+    const targetDate = new Date('December 31, 2023 23:59:59').getTime();
+    startCountdown(targetDate);
+  </script>
+
+</body>
+</html>
